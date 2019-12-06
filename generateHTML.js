@@ -1,27 +1,35 @@
 const colors = {
-  green: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
+  Yellow: {
+    neutral: "#fff8b6",
+    light: "#ffbd91",
+    dark: "#ff8d71",
     headerColor: "black",
-    photoBorderColor: "#black"
+    fill: "#fffde9",
+
   },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
+  Blue: {
+    neutral: "#ccebf8",
+    light: "#0072ce",
+    dark: "#005eb8",
+    headerColor: "#003087",
+    fill: "#75caed",
   },
-  pink: {
-    wrapperBackground: "#879CDF",
-    headerBackground: "#FF8374",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
+
+  Pink: {
+    neutral: "#efe9e2",
+    light: "#ffafb8",
+    dark: "#f36767",
+    fill: "#fadbe0",
+    headerColor: "#605656",
+  
   },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
+  Aqua: {
+    neutral: "#daf8e3",
+    light: "#97ebdb",
+    dark: "#0086ad",
+    fill: "#d7f7f1",
+    headerColor: "#005582",
+
   }
 };
 function generateHTML(answers, res) {
@@ -29,158 +37,266 @@ function generateHTML(answers, res) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <title>Document</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='icon' href='https://raw.githubusercontent.com/taraDM23/AboutTara/master/assets/images/octopus-photo.ico' type='image/x-icon' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Tara de Mel</title>
+
   <style>
-          @page {
-            margin: 0;
-          }
-         *,
-         *::after,
-         *::before {
-         box-sizing: border-box;
-         }
-         html, body {
-         padding: 0;
-         margin: 0;
-         }
-         html, body, .wrapper {
-         height: 100%;
-         }
-         .wrapper {
-         background-color: ${colors[answers.color].wrapperBackground};
-         padding-top: 100px;
-         }
-         body {
-         background-color: white;
-         -webkit-print-color-adjust: exact !important;
-         font-family: 'Cabin', sans-serif;
-         }
-         main {
-         background-color: #E9EDEE;
-         height: auto;
-         padding-top: 30px;
-         }
-         h1, h2, h3, h4, h5, h6 {
-         font-family: 'BioRhyme', serif;
-         margin: 0;
-         }
-         h1 {
-         font-size: 3em;
-         }
-         h2 {
-         font-size: 2.5em;
-         }
-         h3 {
-         font-size: 2em;
-         }
-         h4 {
-         font-size: 1.5em;
-         }
-         h5 {
-         font-size: 1.3em;
-         }
-         h6 {
-         font-size: 1.2em;
-         }
-         .photo-header {
-         position: relative;
-         margin: 0 auto;
-         margin-bottom: -50px;
-         display: flex;
-         justify-content: center;
-         flex-wrap: wrap;
-         background-color: ${colors[answers.color].headerBackground};
-         color: ${colors[answers.color].headerColor};
-         padding: 10px;
-         width: 95%;
-         border-radius: 6px;
-         }
-         .photo-header img {
-         width: 250px;
-         height: 250px;
-         border-radius: 50%;
-         object-fit: cover;
-         margin-top: -75px;
-         border: 6px solid ${colors[answers.color].photoBorderColor};
-         box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
-         }
-         .photo-header h1, .photo-header h2 {
-         width: 100%;
-         text-align: center;
-         }
-         .photo-header h1 {
-         margin-top: 10px;
-         }
-         .links-nav {
-         width: 100%;
-         text-align: center;
-         padding: 20px 0;
-         font-size: 1.1em;
-         }
-         .nav-link {
-         display: inline-block;
-         margin: 5px 10px;
-         }
-         .workExp-date {
-         font-style: italic;
-         font-size: .7em;
-         text-align: right;
-         margin-top: 10px;
-         }
-         .container {
-         padding: 50px;
-         padding-left: 100px;
-         padding-right: 100px;
-         }
+html {
+  height:100%;
+}
 
-         .row {
-           display: flex;
-           flex-wrap: wrap;
-           justify-content: space-between;
-           margin-top: 20px;
-           margin-bottom: 20px;
-         }
+body {
+  font-family: 'Times New Roman', Times, serif;
 
-         .card {
-           padding: 20px;
-           border-radius: 6px;
-           background-color: ${colors[answers.color].headerBackground};
-           color: ${colors[answers.color].headerColor};
-           margin: 20px;
-         }
-         
-         .col {
-         flex: 1;
-         text-align: center;
-         }
+}
 
-         a, a:hover {
-         text-decoration: none;
-         color: inherit;ff
-         font-weight: bold;
-         }
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, ${colors[answers.color].neutral} 50%, ${colors[answers.color].light}	 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
 
-         @media print { 
-          body { 
-            zoom: .75; 
-          } 
-         }
-      </style>    
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+#bg-light {
+  background-color: ${colors[answers.color].fill} !important; 
+  border-bottom: 1px solid ${colors[answers.color].dark};
+  color: ${colors[answers.color].headerColor}; 
+
+}
+
+#overlay {
+  background-color: ${colors[answers.color].fill};
+  padding: 15px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 1px solid ${colors[answers.color].dark};
+}
+
+h1 {
+  font-family:'Times New Roman', Times, serif;
+  color: ${colors[answers.color].headerColor}; 
+}
+
+h2 {
+  color: ${colors[answers.color].headerColor}; 
+}
+
+h3 {
+  color: ${colors[answers.color].headerColor}; 
+}
+
+h4 {
+  color: ${colors[answers.color].headerColor}; 
+}
+
+h5 {
+  color: ${colors[answers.color].headerColor}; 
+}
+
+.col {
+  overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  padding-bottom: 15px;
+}
+
+
+a {
+  text-decoration: none;
+  color: ${colors[answers.color].dark}; 
+  font-size: 15px;
+}
+
+.footer {
+  background-color: ${colors[answers.color].fill} !important; 
+  border-top: 1px solid ${colors[answers.color].dark};
+  color: ${colors[answers.color].headerColor}; 
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 10%;
+}
+
+#bio-image {
+  border:2px solid ${colors[answers.color].dark};
+  border-radius: 50%;
+  height: fixed;
+  width: 100%;
+}
+
+#quote {
+    text-align: center;
+}
+    
+.linkimg {
+  width: 50px;
+  height:50px;
+  padding-right: 7px;
+  padding-bottom: 10px;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.card-deck {
+  padding-top: 35px;
+  padding-left: 50px;
+  padding-right: 40px;
+}
+
+card {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.card-body {
+  background-color: ${colors[answers.color].neutral};
+  border:1px solid ${colors[answers.color].dark};
+}
+
+#row1 {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.col-sm {
+  overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  padding-bottom: 15px;
+}
+
+
+</style>    
 </head>
 <body>
-  <div class="jumbotron jumbotron-fluid">
-  <div class="wrapper">
-    <h1 class="display-4">Hi! My name is ${answers.name}</h1>
-    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
-    <ul class="list-group">
-      <li class="list-group-item"> My fav colour is ${answers.color} My GitHub username is ${answers.github}</li>
-       <li class="list-group-item"> My repo names are $ {res.gitName} </li>
-    </ul>
-  </div>
-</div>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+    <section class=wrapper id=port>
+      <div class=row id=bg-light>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <br>
+          <br>
+        </div>
+      </div>
+    </section>
+
+    <section>
+         <br>
+      <div class=row id=overlay>
+          <div class="col-xs-6 col-sm-6 col-md-4">
+            <img id="bio-image" src="images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} note favicon same?-->
+          </div>
+            <br/>
+          <div class="col-xs-6 col-sm-6 col-md-8">
+            <br>
+            <h3>Hello!</h3>
+            <h4> My name is ${answers.name}. And here's a bit about me.</h4>
+            <h5>I'm currently at $ {res.company}.</h5>
+             <br/>
+             <br/> 
+            <div class=row id=links>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <a href="$ {res.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
+              </div> 
+             </div> 
+             <br/>
+             <br/>
+            <div class=row>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <h5 id=quote> $ {res.bio} where bio goes </h5>
+              </div>
+            </div>
+          </div>
+        <div class="row card-deck">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Followers</h5>
+              <h5 class="card-text">$ {res.follower}</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Public Repos</h5>
+              <h5 class="card-text">$ {res.public_repos}</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Following</h5>
+              <h5 class="card-text">$ {res.following}</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">GitHub Stars</h5>
+              <h5 class="card-text">$ {res.follower}</p>
+            </div>
+          </div>
+          </div>
+       
+      </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class=footer></div
 </body>
 </html>`;
 }
