@@ -24,18 +24,16 @@ const colors = {
     photoBorderColor: "white"
   }
 };
-
-function generateHTML(data) {
-  return `<!DOCTYPE html>
+function generateHTML(answers, res) {
+  return `
+<!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"/>
-      <link href="https://fonts.googleapis.com/css?family=BioRhyme|Cabin&display=swap" rel="stylesheet">
-      <title>Document</title>
-      <style>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Document</title>
+  <style>
           @page {
             margin: 0;
           }
@@ -52,7 +50,7 @@ function generateHTML(data) {
          height: 100%;
          }
          .wrapper {
-         background-color: ${colors[data.color].wrapperBackground};
+         background-color: ${colors[answers.color].wrapperBackground};
          padding-top: 100px;
          }
          body {
@@ -94,8 +92,8 @@ function generateHTML(data) {
          display: flex;
          justify-content: center;
          flex-wrap: wrap;
-         background-color: ${colors[data.color].headerBackground};
-         color: ${colors[data.color].headerColor};
+         background-color: ${colors[answers.color].headerBackground};
+         color: ${colors[answers.color].headerColor};
          padding: 10px;
          width: 95%;
          border-radius: 6px;
@@ -106,7 +104,7 @@ function generateHTML(data) {
          border-radius: 50%;
          object-fit: cover;
          margin-top: -75px;
-         border: 6px solid ${colors[data.color].photoBorderColor};
+         border: 6px solid ${colors[answers.color].photoBorderColor};
          box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
          }
          .photo-header h1, .photo-header h2 {
@@ -149,8 +147,8 @@ function generateHTML(data) {
          .card {
            padding: 20px;
            border-radius: 6px;
-           background-color: ${colors[data.color].headerBackground};
-           color: ${colors[data.color].headerColor};
+           background-color: ${colors[answers.color].headerBackground};
+           color: ${colors[answers.color].headerColor};
            margin: 20px;
          }
          
@@ -161,7 +159,7 @@ function generateHTML(data) {
 
          a, a:hover {
          text-decoration: none;
-         color: inherit;
+         color: inherit;ff
          font-weight: bold;
          }
 
@@ -170,5 +168,19 @@ function generateHTML(data) {
             zoom: .75; 
           } 
          }
-      </style>`
-        }
+      </style>    
+</head>
+<body>
+  <div class="jumbotron jumbotron-fluid">
+  <div class="wrapper">
+    <h1 class="display-4">Hi! My name is ${answers.name}</h1>
+    <h3>Example heading <span class="badge badge-secondary">Contact Me</span></h3>
+    <ul class="list-group">
+      <li class="list-group-item"> My fav colour is ${answers.color} My GitHub username is ${answers.github}</li>
+       <li class="list-group-item"> My repo names are $ {res.gitName} </li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>`;
+}
