@@ -215,23 +215,6 @@ h5 {
   padding-bottom: 15px;
 }
 
- .card img {
-	max-width: 300px;
-	max-height: 200px;
-  border: 3px solid #c0b8b8;
-}
-
- .card-body {
-	opacity: 0;
-	position: absolute;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 10px;
-	height: 90%;
-	background: #fff;
-	transition: all 0.5s ease;
-}
 
 a {
   text-decoration: none;
@@ -243,24 +226,6 @@ a {
 	transform: scale(0, 1);
 
 }
- .card-text {
-	text-align: center;
-	font-size: 15px;
-	letter-spacing: 1px;
-}
- .card:hover .card-body {
-	opacity: 0.8;
-	width: 90%;
-	transition: 0.5s ease;
-  align-self: center;
-  vertical-align: unset;
-  margin-top: 3%;
-}
- .card:hover .card-body .card-text {
-	transform: scale(1);
-	transition: 0.5s ease;
-}
-
 
 .footer {
   background-color: ${colors[answers.color].fill} !important; 
@@ -290,62 +255,132 @@ a {
   padding-right: 7px;
   padding-bottom: 10px;
 }
+
+.card-title {
+  text-align: center;
+}
+
+.card-text {
+  text-align: center;
+}
+
+.card-deck {
+  padding-top: 35px;
+}
+
+.card {
+  margin-bottom: 15px;
+}
+
+.card-body {
+  background-color: ${colors[answers.color].neutral};
+}
+
+#row1 {
+  display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.col-sm {
+  overflow: hidden;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  padding-bottom: 15px;
+}
+
+
 </style>    
 </head>
 <body>
     <div class="bg"></div>
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
+
     <section class=wrapper id=port>
-        <div class=row id=bg-light>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <br>
-                <br>
-            </div>
+      <div class=row id=bg-light>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <br>
+          <br>
         </div>
+      </div>
+    </section>
+
+    <section>
          <br>
-        <div class=row id=overlay>
-            <div class="col-xs-6 col-sm-6 col-md-4">
-                <img id="bio-image" src="images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} -->
-            </div>
+      <div class=row id=overlay>
+          <div class="col-xs-6 col-sm-6 col-md-4">
+            <img id="bio-image" src="images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} note favicon same?-->
+          </div>
             <br/>
-            <div class="col-xs-6 col-sm-6 col-md-8">
-                <br>
-                <h3>Hi!</h3>
-                <h4>
-                    My name is ${answers.name}
-                </h4>
-                <h5>
-                    I'm currently at $ {res.company}. 
-                </h5>
-                <div class=row id=links>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="$ {res.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
-                    </div>
-                </div>
-                <br />
-                <br />
-                <div class=row>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <p id=quote> $ {res.bio} where bio goes </p>
-                    </div>
-                </div>
-                <div class=row>
-                    <div class="col-xs-12 col-sm-12 col-md-12">
-                        <p> github information  goes here </p>
-                    </div>
-                </div>
+          <div class="col-xs-6 col-sm-6 col-md-8">
+            <br>
+            <h3>Hi!</h3>
+            <h4> My name is ${answers.name}</h4>
+            <h5>I'm currently at $ {res.company}.</h5>
+                
+            <div class=row id=links>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <a href="$ {res.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4">
+                <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
+              </div> 
+             </div> 
+            <div class=row>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <h5 id=quote> $ {res.bio} where bio goes </h5>
+              </div>
             </div>
+          </div>
+        <div class=row id=row1>
+        <div class="card-deck"> 
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Followers</h5>
+              <h5 class="card-text">$ {res.follower}</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Public Repos</h5>
+              <h5 class="card-text">$ {res.public_repos}</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Following</h5>
+              <h5 class="card-text">$ {res.following}</p>
+            </div>
+          </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">GitHub Stars</h5>
+              <h5 class="card-text">$ {res.follower}</p>
+            </div>
+          </div>
+          </div>
         </div>
+      </div>
     </section>
     <br />
     <br />
+    <br />
+    <br />
+    <br />
+
     <div class=footer></div
 </body>
 </html>`;
