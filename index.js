@@ -206,7 +206,7 @@ h5 {
 	align-items: center;
 }
 
-.col-sm {
+.col {
   overflow: hidden;
 	position: relative;
 	display: flex;
@@ -221,11 +221,6 @@ a {
   color: ${colors[answers.color].dark}; 
   font-size: 15px;
 }
- .card-body p {
-	transition: 0.5s ease;
-	transform: scale(0, 1);
-
-}
 
 .footer {
   background-color: ${colors[answers.color].fill} !important; 
@@ -238,9 +233,8 @@ a {
 }
 
 #bio-image {
-  border:1px solid ${colors[answers.color].dark};
+  border:2px solid ${colors[answers.color].dark};
   border-radius: 50%;
-  padding-right: 3px;
   height: 100%;
   width: 100%;
 }
@@ -266,10 +260,13 @@ a {
 
 .card-deck {
   padding-top: 35px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-.card {
+card {
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .card-body {
@@ -320,7 +317,8 @@ a {
             <h3>Hi!</h3>
             <h4> My name is ${answers.name}</h4>
             <h5>I'm currently at $ {res.company}.</h5>
-                
+             <br/>
+             <br/> 
             <div class=row id=links>
               <div class="col-xs-12 col-sm-6 col-md-4">
                 <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
@@ -332,6 +330,8 @@ a {
                 <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
               </div> 
              </div> 
+             <br/>
+             <br/>
             <div class=row>
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <h5 id=quote> $ {res.bio} where bio goes </h5>
@@ -340,7 +340,7 @@ a {
           </div>
         <div class=row id=row1>
         <div class="card-deck"> 
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Followers</h5>
@@ -348,7 +348,7 @@ a {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Public Repos</h5>
@@ -356,7 +356,7 @@ a {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Following</h5>
@@ -364,7 +364,7 @@ a {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3	col-xl-3">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">GitHub Stars</h5>
