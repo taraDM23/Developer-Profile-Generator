@@ -18,10 +18,15 @@ function promptUser() {
       message: "Enter your GitHub Username"
     },
     {
+      type: "input",
+      name: "linkedIn",
+      message: "Enter your linkedIn URL"
+    },
+    {
       type: "list",
       name: "color",
       message: "Pick a colour",
-      choices: ["yellow", "blue", "pink", "red"]
+      choices: ["Yellow", "Blue", "Pink", "Aqua"]
     }
   ]);
 }
@@ -50,8 +55,8 @@ function gitAPI() {
     console.log(nameGit)
     const bio = res.data.bio
     console.log(bio)
-    //    const repoNamesStr = repoNames.join("\n");
-
+    const company = res.data.company
+    console.log(company)
   })
 }
 
@@ -73,29 +78,37 @@ promptUser()
   });
 
 const colors = {
-  yellow: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
+  Yellow: {
+    neutral: "#fff8b6",
+    light: "#ffbd91",
+    dark: "#ff8d71",
     headerColor: "black",
-    photoBorderColor: "#black"
+    fill: "#fffde9",
+
   },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
+  Blue: {
+    neutral: "#ccebf8",
+    light: "#0072ce",
+    dark: "#005eb8",
+    headerColor: "#003087",
+    fill: "#75caed",
   },
-  pink: {
+
+  Pink: {
+    neutral: "#efe9e2",
     light: "#ffafb8",
     dark: "#f36767",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
+    fill: "#fadbe0",
+    headerColor: "#605656",
+  
   },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
+  Aqua: {
+    neutral: "#daf8e3",
+    light: "#97ebdb",
+    dark: "#0086ad",
+    fill: "#d7f7f1",
+    headerColor: "#005582",
+
   }
 };
 function generateHTML(answers, res) {
@@ -112,18 +125,18 @@ function generateHTML(answers, res) {
     <title>Tara de Mel</title>
 
   <style>
-      html {
+html {
   height:100%;
 }
 
 body {
-  margin:0;
   font-family: 'Times New Roman', Times, serif;
+
 }
 
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #efe9e2 50%, ${colors[answers.color].light}	 50%);
+  background-image: linear-gradient(-60deg, ${colors[answers.color].neutral} 50%, ${colors[answers.color].light}	 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -151,29 +164,43 @@ body {
   }
 }
 
-.bg-light /* Nav bar */{
-  background-color: #efe9e2!important; 
-  border-bottom: 1px solid #c0b8b8;
-  color: #7a7373; 
+#bg-light {
+  background-color: ${colors[answers.color].fill} !important; 
+  border-bottom: 1px solid ${colors[answers.color].dark};
+  color: ${colors[answers.color].headerColor}; 
 
 }
 
+#overlay {
+  background-color: ${colors[answers.color].fill};
+  padding: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: 1px solid ${colors[answers.color].dark};
+}
 
 h1 {
   font-family:'Times New Roman', Times, serif;
-  color: #7a7373; 
+  color: ${colors[answers.color].headerColor}; 
 }
 
 h2 {
-  color: #7a7373; 
+  color: ${colors[answers.color].headerColor}; 
+}
+
+h3 {
+  color: ${colors[answers.color].headerColor}; 
 }
 
 h4 {
-  color: #7a7373; 
+  color: ${colors[answers.color].headerColor}; 
+}
+
+h5 {
+  color: ${colors[answers.color].headerColor}; 
 }
 
 #row1 {
-  
   display: flex;
 	justify-content: center;
 	align-items: center;
@@ -236,18 +263,17 @@ a {
 
 
 .footer {
-  background-color: #887a7a;
-  color: #cccccc;
-  text-align: center;
-  font-size: 12px;
-  padding: 15px;
-  border-top: solid ${colors[answers.color].wrapperBackground} 8px;
+  background-color: ${colors[answers.color].fill} !important; 
+  border-top: 1px solid ${colors[answers.color].dark};
+  color: ${colors[answers.color].headerColor}; 
   position: fixed;
   bottom: 0px;
   width: 100%;
+  height: 10%;
 }
 
 #bio-image {
+  border:1px solid ${colors[answers.color].dark};
   border-radius: 50%;
   padding-right: 3px;
   height: 100%;
@@ -271,16 +297,16 @@ a {
     <div class="bg bg2"></div>
     <div class="bg bg3"></div>
     <section class=wrapper id=port>
-        <div class=row>
+        <div class=row id=bg-light>
             <div class="col-xs-12 col-sm-12 col-md-12">
-                <h2>About Me</h2>
-                <hr />
+                <br>
                 <br>
             </div>
         </div>
-        <div class=row>
+         <br>
+        <div class=row id=overlay>
             <div class="col-xs-6 col-sm-6 col-md-4">
-                <img id="bio-image" src="assets/images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} -->
+                <img id="bio-image" src="images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} -->
             </div>
             <br/>
             <div class="col-xs-6 col-sm-6 col-md-8">
@@ -289,22 +315,30 @@ a {
                 <h4>
                     My name is ${answers.name}
                 </h4>
+                <h5>
+                    I'm currently at $ {res.company}. 
+                </h5>
                 <div class=row id=links>
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="https://drive.google.com/file/d/1MPotwXjNKBxFo_4dokOAiSGZfExad4Ug/view" target="_blank"><img class="linkimg" src="assets/images/resume2.png" alt="...">Resume</a>
+                        <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="https://github.com/taraDM23" target="_blank"><img class="linkimg" src="assets/images/GitHub-Mark-120px-plus.png" alt="...">insert  Github</a>
+                        <a href="$ {res.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-md-4">
-                        <a href="https://www.linkedin.com/in/tara-d-930627135/" target="_blank"><img class="linkimg" src="assets/images/LI-In-Bug.png" alt="...">linkedIn</a>
+                        <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
                     </div>
                 </div>
                 <br />
                 <br />
                 <div class=row>
                     <div class="col-xs-12 col-sm-12 col-md-12">
-                        <p id=quote> "Time is Money, Money is Power, Power is Pizza, and Pizza is Knowledge - April Ludgate."</p>
+                        <p id=quote> $ {res.bio} where bio goes </p>
+                    </div>
+                </div>
+                <div class=row>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <p> github information  goes here </p>
                     </div>
                 </div>
             </div>
@@ -317,45 +351,6 @@ a {
 </html>`;
 }
 
-
-
-/*
-
-         .wrapper {
-         background-color: ${colors[answers.color].wrapperBackground};
-         padding-top: 100px;
-         }
-         .photo-header {
-         position: relative;
-         margin: 0 auto;
-         margin-bottom: -50px;
-         display: flex;
-         justify-content: center;
-         flex-wrap: wrap;
-         background-color: ${colors[answers.color].headerBackground};
-         color: ${colors[answers.color].headerColor};
-         padding: 10px;
-         width: 95%;
-         border-radius: 6px;
-         }
-         .photo-header img {
-         width: 250px;
-         height: 250px;
-         border-radius: 50%;
-         object-fit: cover;
-         margin-top: -75px;
-         border: 6px solid ${colors[answers.color].photoBorderColor};
-         box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
-
-
-         .card {
-           padding: 20px;
-           border-radius: 6px;
-           background-color: ${colors[answers.color].headerBackground};
-           color: ${colors[answers.color].headerColor};
-           margin: 20px;
-         }
- */
 
 
 
