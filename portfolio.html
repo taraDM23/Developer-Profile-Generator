@@ -1,105 +1,4 @@
-const inquirer = require("inquirer");
-const fs = require("fs");
-const axios = require("axios");
-const util = require("util");
 
-const writeFileAsync = util.promisify(fs.writeFile);
-
-function promptUser() {
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "name",
-      message: "What is your name?"
-    },
-    {
-      type: "input",
-      name: "github",
-      message: "Enter your GitHub Username"
-    },
-    {
-      type: "list",
-      name: "color",
-      message: "Pick a colour",
-      choices: ["yellow", "blue", "pink", "red"]
-    }
-  ]);
-}
-
-function gitAPI() {
-
-  const queryUrl = `https://api.github.com/users/${github}`;
-
-  axios.get(queryUrl).then(function (res) {
-    const gitName = res.data.login
-    console.log(gitName);
-    const gitURL = res.data.url
-    console.log(gitURL)
-    const location = res.data.location
-    console.log(location)
-    const email = res.data.email
-    console.log(email)
-    const public_repos = res.data.public_repos
-    console.log(public_repos)
-    const followers = res.data.followers
-    console.log(followers)
-    const following = res.data.following
-    console.log(following)
-    console.log(avatar)
-    const nameGit = res.data.name
-    console.log(nameGit)
-    const bio = res.data.bio
-    console.log(bio)
-    //    const repoNamesStr = repoNames.join("\n");
-
-  })
-}
-
-promptUser()
-  /* .then(function ({ github }) {
-
-      add gitAPI function code
-
-  }) */
-  .then(function (answers, res) {
-    const html = generateHTML(answers, res);
-    return writeFileAsync("portfolio.html", html);
-  })
-  .then(function () {
-    console.log("Successfully wrote to index.html");
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
-
-const colors = {
-  yellow: {
-    wrapperBackground: "#E6E1C3",
-    headerBackground: "#C1C72C",
-    headerColor: "black",
-    photoBorderColor: "#black"
-  },
-  blue: {
-    wrapperBackground: "#5F64D3",
-    headerBackground: "#26175A",
-    headerColor: "white",
-    photoBorderColor: "#73448C"
-  },
-  pink: {
-    light: "#ffafb8",
-    dark: "#f36767",
-    headerColor: "white",
-    photoBorderColor: "#FEE24C"
-  },
-  red: {
-    wrapperBackground: "#DE9967",
-    headerBackground: "#870603",
-    headerColor: "white",
-    photoBorderColor: "white"
-  }
-};
-function generateHTML(answers, res) {
-  return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +22,7 @@ body {
 
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #efe9e2 50%, ${colors[answers.color].light}	 50%);
+  background-image: linear-gradient(-60deg, #efe9e2 50%, #ffafb8	 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -208,7 +107,7 @@ h4 {
 
 a {
   text-decoration: none;
-  color: ${colors[answers.color].dark}; 
+  color: #f36767; 
   font-size: 15px;
 }
  .card-body p {
@@ -241,7 +140,7 @@ a {
   text-align: center;
   font-size: 12px;
   padding: 15px;
-  border-top: solid ${colors[answers.color].wrapperBackground} 8px;
+  border-top: solid undefined 8px;
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -287,7 +186,7 @@ a {
                 <br>
                 <h3>Hi!</h3>
                 <h4>
-                    My name is ${answers.name}
+                    My name is Tara
                 </h4>
                 <div class=row id=links>
                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -314,48 +213,4 @@ a {
     <br />
     <div class=footer></div
 </body>
-</html>`;
-}
-
-
-
-/*
-
-         .wrapper {
-         background-color: ${colors[answers.color].wrapperBackground};
-         padding-top: 100px;
-         }
-         .photo-header {
-         position: relative;
-         margin: 0 auto;
-         margin-bottom: -50px;
-         display: flex;
-         justify-content: center;
-         flex-wrap: wrap;
-         background-color: ${colors[answers.color].headerBackground};
-         color: ${colors[answers.color].headerColor};
-         padding: 10px;
-         width: 95%;
-         border-radius: 6px;
-         }
-         .photo-header img {
-         width: 250px;
-         height: 250px;
-         border-radius: 50%;
-         object-fit: cover;
-         margin-top: -75px;
-         border: 6px solid ${colors[answers.color].photoBorderColor};
-         box-shadow: rgba(0, 0, 0, 0.3) 4px 1px 20px 4px;
-
-
-         .card {
-           padding: 20px;
-           border-radius: 6px;
-           background-color: ${colors[answers.color].headerBackground};
-           color: ${colors[answers.color].headerColor};
-           margin: 20px;
-         }
- */
-
-
-
+</html>
