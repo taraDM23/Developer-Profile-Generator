@@ -22,7 +22,7 @@ body {
 
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #fff8b6 50%, #ffbd91	 50%);
+  background-image: linear-gradient(-60deg, #daf8e3 50%, #97ebdb	 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -51,45 +51,39 @@ body {
 }
 
 #bg-light {
-  background-color: #fffde9 !important; 
-  border-bottom: 1px solid #ff8d71;
-  color: black; 
+  background-color: #d7f7f1 !important; 
+  border-bottom: 1px solid #0086ad;
+  color: #005582; 
 
 }
 
 #overlay {
-  background-color: #fffde9;
+  background-color: #d7f7f1;
   padding: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
-  border: 1px solid #ff8d71;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 1px solid #0086ad;
 }
 
 h1 {
   font-family:'Times New Roman', Times, serif;
-  color: black; 
+  color: #005582; 
 }
 
 h2 {
-  color: black; 
+  color: #005582; 
 }
 
 h3 {
-  color: black; 
+  color: #005582; 
 }
 
 h4 {
-  color: black; 
+  color: #005582; 
 }
 
 h5 {
-  color: black; 
-}
-
-#row1 {
-  display: flex;
-	justify-content: center;
-	align-items: center;
+  color: #005582; 
 }
 
 .col {
@@ -104,14 +98,14 @@ h5 {
 
 a {
   text-decoration: none;
-  color: #ff8d71; 
+  color: #0086ad; 
   font-size: 15px;
 }
 
 .footer {
-  background-color: #fffde9 !important; 
-  border-top: 1px solid #ff8d71;
-  color: black; 
+  background-color: #d7f7f1 !important; 
+  border-top: 1px solid #0086ad;
+  color: #005582; 
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -119,9 +113,9 @@ a {
 }
 
 #bio-image {
-  border:2px solid #ff8d71;
+  border:2px solid #0086ad;
   border-radius: 50%;
-  height: 100%;
+  height: fixed;
   width: 100%;
 }
 
@@ -146,8 +140,8 @@ a {
 
 .card-deck {
   padding-top: 35px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 50px;
+  padding-right: 40px;
 }
 
 card {
@@ -156,7 +150,8 @@ card {
 }
 
 .card-body {
-  background-color: #fff8b6;
+  background-color: #daf8e3;
+  border:1px solid #0086ad;
 }
 
 #row1 {
@@ -224,9 +219,8 @@ card {
               </div>
             </div>
           </div>
-        <div class=row id=row1>
-        <div class="card-deck"> 
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6" style="margin-bottom: 20px;">
+        <div class="row card-deck">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Followers</h5>
@@ -234,7 +228,7 @@ card {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Public Repos</h5>
@@ -242,7 +236,7 @@ card {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Following</h5>
@@ -250,7 +244,7 @@ card {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">GitHub Stars</h5>
@@ -258,7 +252,7 @@ card {
             </div>
           </div>
           </div>
-        </div>
+       
       </div>
     </section>
     <br />

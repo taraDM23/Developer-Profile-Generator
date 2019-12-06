@@ -174,8 +174,8 @@ body {
 #overlay {
   background-color: ${colors[answers.color].fill};
   padding: 15px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
   border: 1px solid ${colors[answers.color].dark};
 }
 
@@ -198,12 +198,6 @@ h4 {
 
 h5 {
   color: ${colors[answers.color].headerColor}; 
-}
-
-#row1 {
-  display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .col {
@@ -235,7 +229,7 @@ a {
 #bio-image {
   border:2px solid ${colors[answers.color].dark};
   border-radius: 50%;
-  height: 100%;
+  height: fixed;
   width: 100%;
 }
 
@@ -260,8 +254,8 @@ a {
 
 .card-deck {
   padding-top: 35px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 50px;
+  padding-right: 40px;
 }
 
 card {
@@ -271,6 +265,7 @@ card {
 
 .card-body {
   background-color: ${colors[answers.color].neutral};
+  border:1px solid ${colors[answers.color].dark};
 }
 
 #row1 {
@@ -314,8 +309,8 @@ card {
             <br/>
           <div class="col-xs-6 col-sm-6 col-md-8">
             <br>
-            <h3>Hi!</h3>
-            <h4> My name is ${answers.name}</h4>
+            <h3>Hello!</h3>
+            <h4> My name is ${answers.name}. And here's a bit about me.</h4>
             <h5>I'm currently at $ {res.company}.</h5>
              <br/>
              <br/> 
@@ -338,9 +333,8 @@ card {
               </div>
             </div>
           </div>
-        <div class=row id=row1>
-        <div class="card-deck"> 
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6" style="margin-bottom: 20px;">
+        <div class="row card-deck">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Followers</h5>
@@ -348,7 +342,7 @@ card {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Public Repos</h5>
@@ -356,7 +350,7 @@ card {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Following</h5>
@@ -364,7 +358,7 @@ card {
             </div>
           </div>
           </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6	col-xl-6">
+          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">GitHub Stars</h5>
@@ -372,7 +366,7 @@ card {
             </div>
           </div>
           </div>
-        </div>
+       
       </div>
     </section>
     <br />
