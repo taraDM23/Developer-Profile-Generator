@@ -1,4 +1,5 @@
 const inquirer = require("inquirer");
+//var genHTML = require('./generateHTML.js');
 const fs = require("fs");
 const axios = require("axios");
 const util = require("util");
@@ -26,7 +27,7 @@ function promptUser() {
       type: "list",
       name: "color",
       message: "Pick a colour",
-      choices: ["Yellow", "Blue", "Pink", "Aqua"]
+      choices: ["Yellow", "Blue", "Pink", "Aqua_Green"]
     }
   ]);
 }
@@ -102,7 +103,7 @@ const colors = {
     headerColor: "#605656",
   
   },
-  Aqua: {
+  Aqua_Green: {
     neutral: "#daf8e3",
     light: "#97ebdb",
     dark: "#0086ad",
@@ -301,6 +302,7 @@ card {
     </section>
 
     <section>
+         <br>
          <br>
       <div class=row id=overlay>
           <div class="col-xs-6 col-sm-6 col-md-4">
