@@ -1,5 +1,4 @@
 const inquirer = require("inquirer");
-//var genHTML = require('./generateHTML.js');
 const fs = require("fs");
 const axios = require("axios");
 const util = require("util");
@@ -32,7 +31,7 @@ function promptUser() {
   ]);
 }
 
-function gitAPI() {
+async function gitAPI() {
 
   const queryUrl = `https://api.github.com/users/${github}`;
 
@@ -51,6 +50,7 @@ function gitAPI() {
     console.log(followers)
     const following = res.data.following
     console.log(following)
+    const following = res.data.avatar
     console.log(avatar)
     const nameGit = res.data.name
     console.log(nameGit)
@@ -60,23 +60,60 @@ function gitAPI() {
     console.log(company)
   })
 }
+main()
+async function main(){
+  try{
+  const answers = await promptUser();
+  const queryUrl = `https://api.github.com/users/${answers.github}`;
 
-promptUser()
-  /* .then(function ({ github }) {
+  const res = await axios.get(queryUrl)
+  const gitName = res.data.login
+  console.log(gitName);
+  const gitURL = res.data.url
+  console.log(gitURL)
+  const location = res.data.location
+  console.log(location)
+  const email = res.data.email
+  console.log(email)
+  const public_repos = res.data.public_repos
+  console.log(public_repos)
+  const followers = res.data.followers
+  console.log(followers)
+  const following = res.data.following
+  console.log(following)
+  const avatar = res.data.avatar_url
+  console.log(avatar)
+  const nameGit = res.data.name
+  console.log(nameGit)
+  const bio = res.data.bio
+  console.log(bio)
+  const company = res.data.company
+  console.log(company)
+  const html = generateHTML(answers, res);
+  await writeFileAsync("portfolio.html", html);
+  console.log("Successfully wrote to index.html");
+  }
+  catch(err){
+    console.log(err)
+  }
 
-      add gitAPI function code
+}
+// promptUser()
+//   /* .then(function ({ github }) {
 
-  }) */
-  .then(function (answers, res) {
-    const html = generateHTML(answers, res);
-    return writeFileAsync("portfolio.html", html);
-  })
-  .then(function () {
-    console.log("Successfully wrote to index.html");
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
+//       add gitAPI function code
+
+//   }) */
+//   .then(function (answers, res) {
+//     const html = generateHTML(answers, res);
+//     return writeFileAsync("portfolio.html", html);
+//   })
+//   .then(function () {
+//     console.log("Successfully wrote to index.html");
+//   })
+//   .catch(function (err) {
+  //   console.log(err);
+  // });
 
 const colors = {
   Yellow: {
@@ -306,22 +343,22 @@ card {
          <br>
       <div class=row id=overlay>
           <div class="col-xs-6 col-sm-6 col-md-4">
-            <img id="bio-image" src="images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} note favicon same?-->
+            <img id="bio-image" src="${res.data.avatar_url}" alt="..."> <!--  note favicon same?-->
           </div>
             <br/>
           <div class="col-xs-6 col-sm-6 col-md-8">
             <br>
             <h3>Hello!</h3>
             <h4> My name is ${answers.name}. And here's a bit about me.</h4>
-            <h5>I'm currently at $ {res.company}.</h5>
+            <h5>I'm currently at ${res.data.company}.</h5>
              <br/>
              <br/> 
             <div class=row id=links>
               <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
+                <a href="https://www.google.com/maps/place/${res.data.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">${res.data.location}</a>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="$ {res.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
+                <a href="${res.data.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-4">
                 <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
@@ -331,7 +368,7 @@ card {
              <br/>
             <div class=row>
               <div class="col-xs-12 col-sm-12 col-md-12">
-                <h5 id=quote> $ {res.bio} where bio goes </h5>
+                <h5 id=quote> ${res.data.bio} where bio goes </h5>
               </div>
             </div>
           </div>
@@ -340,7 +377,7 @@ card {
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Followers</h5>
-              <h5 class="card-text">$ {res.follower}</p>
+              <h5 class="card-text">${res.data.followers}</p>
             </div>
           </div>
           </div>
@@ -348,7 +385,7 @@ card {
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Public Repos</h5>
-              <h5 class="card-text">$ {res.public_repos}</p>
+              <h5 class="card-text">${res.data.public_repos}</p>
             </div>
           </div>
           </div>
@@ -356,7 +393,7 @@ card {
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Following</h5>
-              <h5 class="card-text">$ {res.following}</p>
+              <h5 class="card-text">${res.data.following}</p>
             </div>
           </div>
           </div>

@@ -22,7 +22,7 @@ body {
 
 .bg {
   animation:slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #daf8e3 50%, #97ebdb	 50%);
+  background-image: linear-gradient(-60deg, #fff8b6 50%, #ffbd91	 50%);
   bottom:0;
   left:-50%;
   opacity:.5;
@@ -51,39 +51,39 @@ body {
 }
 
 #bg-light {
-  background-color: #d7f7f1 !important; 
-  border-bottom: 1px solid #0086ad;
-  color: #005582; 
+  background-color: #fffde9 !important; 
+  border-bottom: 1px solid #ff8d71;
+  color: black; 
 
 }
 
 #overlay {
-  background-color: #d7f7f1;
+  background-color: #fffde9;
   padding: 15px;
   margin-left: 50px;
   margin-right: 50px;
-  border: 1px solid #0086ad;
+  border: 1px solid #ff8d71;
 }
 
 h1 {
   font-family:'Times New Roman', Times, serif;
-  color: #005582; 
+  color: black; 
 }
 
 h2 {
-  color: #005582; 
+  color: black; 
 }
 
 h3 {
-  color: #005582; 
+  color: black; 
 }
 
 h4 {
-  color: #005582; 
+  color: black; 
 }
 
 h5 {
-  color: #005582; 
+  color: black; 
 }
 
 .col {
@@ -98,14 +98,14 @@ h5 {
 
 a {
   text-decoration: none;
-  color: #0086ad; 
+  color: #ff8d71; 
   font-size: 15px;
 }
 
 .footer {
-  background-color: #d7f7f1 !important; 
-  border-top: 1px solid #0086ad;
-  color: #005582; 
+  background-color: #fffde9 !important; 
+  border-top: 1px solid #ff8d71;
+  color: black; 
   position: fixed;
   bottom: 0px;
   width: 100%;
@@ -113,7 +113,7 @@ a {
 }
 
 #bio-image {
-  border:2px solid #0086ad;
+  border:2px solid #ff8d71;
   border-radius: 50%;
   height: fixed;
   width: 100%;
@@ -150,8 +150,8 @@ card {
 }
 
 .card-body {
-  background-color: #daf8e3;
-  border:1px solid #0086ad;
+  background-color: #fff8b6;
+  border:1px solid #ff8d71;
 }
 
 #row1 {
@@ -191,32 +191,32 @@ card {
          <br>
       <div class=row id=overlay>
           <div class="col-xs-6 col-sm-6 col-md-4">
-            <img id="bio-image" src="images/unnamed1.jpg" alt="..."> <!-- $ {res.avatar} note favicon same?-->
+            <img id="bio-image" src="https://avatars1.githubusercontent.com/u/55875354?v=4" alt="..."> <!--  note favicon same?-->
           </div>
             <br/>
           <div class="col-xs-6 col-sm-6 col-md-8">
             <br>
             <h3>Hello!</h3>
-            <h4> My name is Daniel Hoh. And here's a bit about me.</h4>
-            <h5>I'm currently at $ {res.company}.</h5>
+            <h4> My name is sfgdthf. And here's a bit about me.</h4>
+            <h5>I'm currently at test.</h5>
              <br/>
              <br/> 
             <div class=row id=links>
               <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="https://www.google.com/maps/place/$ {res.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">$ {res.location}</a>
+                <a href="https://www.google.com/maps/place/Melbourne" target="_blank"><img class="linkimg" src="images/map.png" alt="...">Melbourne</a>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="$ {res.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
+                <a href="undefined" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="https://" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
+                <a href="https://thrthtyjuyjy" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
               </div> 
              </div> 
              <br/>
              <br/>
             <div class=row>
               <div class="col-xs-12 col-sm-12 col-md-12">
-                <h5 id=quote> $ {res.bio} where bio goes </h5>
+                <h5 id=quote> Bio description where bio goes </h5>
               </div>
             </div>
           </div>
@@ -225,7 +225,7 @@ card {
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Followers</h5>
-              <h5 class="card-text">$ {res.follower}</p>
+              <h5 class="card-text">0</p>
             </div>
           </div>
           </div>
@@ -233,7 +233,7 @@ card {
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Public Repos</h5>
-              <h5 class="card-text">$ {res.public_repos}</p>
+              <h5 class="card-text">11</p>
             </div>
           </div>
           </div>
@@ -241,7 +241,7 @@ card {
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Following</h5>
-              <h5 class="card-text">$ {res.following}</p>
+              <h5 class="card-text">1</p>
             </div>
           </div>
           </div>
