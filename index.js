@@ -2,7 +2,8 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const axios = require("axios");
 const util = require("util");
-
+const pdf = require('html-pdf');
+const options = { format: 'Letter' };
 const writeFileAsync = util.promisify(fs.writeFile);
 
 function promptUser() {
@@ -31,89 +32,36 @@ function promptUser() {
   ]);
 }
 
-async function gitAPI() {
-
-  const queryUrl = `https://api.github.com/users/${github}`;
-
-  axios.get(queryUrl).then(function (res) {
-    const gitName = res.data.login
-    console.log(gitName);
-    const gitURL = res.data.url
-    console.log(gitURL)
-    const location = res.data.location
-    console.log(location)
-    const email = res.data.email
-    console.log(email)
-    const public_repos = res.data.public_repos
-    console.log(public_repos)
-    const followers = res.data.followers
-    console.log(followers)
-    const following = res.data.following
-    console.log(following)
-    const following = res.data.avatar
-    console.log(avatar)
-    const nameGit = res.data.name
-    console.log(nameGit)
-    const bio = res.data.bio
-    console.log(bio)
-    const company = res.data.company
-    console.log(company)
-  })
-}
 main()
-async function main(){
-  try{
-  const answers = await promptUser();
-  const queryUrl = `https://api.github.com/users/${answers.github}`;
+async function main() {
+  try {
+    const answers = await promptUser();
+    const queryUrl = `https://api.github.com/users/${answers.github}`;
 
-  const res = await axios.get(queryUrl)
-  const gitName = res.data.login
-  console.log(gitName);
-  const gitURL = res.data.url
-  console.log(gitURL)
-  const location = res.data.location
-  console.log(location)
-  const email = res.data.email
-  console.log(email)
-  const public_repos = res.data.public_repos
-  console.log(public_repos)
-  const followers = res.data.followers
-  console.log(followers)
-  const following = res.data.following
-  console.log(following)
-  const avatar = res.data.avatar_url
-  console.log(avatar)
-  const nameGit = res.data.name
-  console.log(nameGit)
-  const bio = res.data.bio
-  console.log(bio)
-  const company = res.data.company
-  console.log(company)
-  const html = generateHTML(answers, res);
-  await writeFileAsync("portfolio.html", html);
-  console.log("Successfully wrote to index.html");
+    const res = await axios.get(queryUrl)
+    const queryUrlStar = `https://api.github.com/users/${answers.github}/starred`;
+    const resStar = await axios.get(queryUrlStar)
+    console.log(res.data.url)
+    const html = generateHTML(answers, res , resStar);
+    await writeFileAsync("portfolio.html", html);
+    console.log("Successfully wrote to index.html");
+    pdf.create(
+      html,
+      {
+        "format": "A4",
+        "orientation": "portrait",
+        "type": "pdf",
+        "timeout": 3000,
+      }
+    ).toFile('./portfolio.pdf', function (err, res) {
+      if (err) return console.log(err);
+      console.log(res);
+    });
   }
-  catch(err){
+  catch (err) {
     console.log(err)
   }
-
 }
-// promptUser()
-//   /* .then(function ({ github }) {
-
-//       add gitAPI function code
-
-//   }) */
-//   .then(function (answers, res) {
-//     const html = generateHTML(answers, res);
-//     return writeFileAsync("portfolio.html", html);
-//   })
-//   .then(function () {
-//     console.log("Successfully wrote to index.html");
-//   })
-//   .catch(function (err) {
-  //   console.log(err);
-  // });
 
 const colors = {
   Yellow: {
@@ -138,7 +86,7 @@ const colors = {
     dark: "#f36767",
     fill: "#fadbe0",
     headerColor: "#605656",
-  
+
   },
   Aqua_Green: {
     neutral: "#daf8e3",
@@ -149,19 +97,18 @@ const colors = {
 
   }
 };
-function generateHTML(answers, res) {
+function generateHTML(answers, res , resStar) {
   return `
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel='icon' href='https://raw.githubusercontent.com/taraDM23/AboutTara/master/assets/images/octopus-photo.ico' type='image/x-icon' />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <title>Tara de Mel</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='icon' href='${res.data.avatar_url}' type='image/x-icon' />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <title>Tara de Mel</title>
   <style>
 html {
   height:100%;
@@ -331,7 +278,7 @@ card {
 
     <section class=wrapper id=port>
       <div class=row id=bg-light>
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-12 col-sm-12 col-md-12">
           <br>
           <br>
         </div>
@@ -339,83 +286,75 @@ card {
     </section>
 
     <section>
-         <br>
-         <br>
-      <div class=row id=overlay>
-          <div class="col-xs-6 col-sm-6 col-md-4">
-            <img id="bio-image" src="${res.data.avatar_url}" alt="..."> <!--  note favicon same?-->
-          </div>
-            <br/>
-          <div class="col-xs-6 col-sm-6 col-md-8">
-            <br>
-            <h3>Hello!</h3>
-            <h4> My name is ${answers.name}. And here's a bit about me.</h4>
-            <h5>I'm currently at ${res.data.company}.</h5>
-             <br/>
-             <br/> 
-            <div class=row id=links>
-              <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="https://www.google.com/maps/place/${res.data.location}" target="_blank"><img class="linkimg" src="images/map.png" alt="...">${res.data.location}</a>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="${res.data.gitURL}" target="_blank"><img class="linkimg" src="images/GitHub-Mark-120px-plus.png" alt="...">Github</a>
-              </div>
-              <div class="col-xs-12 col-sm-6 col-md-4">
-                <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="images/LI-In-Bug.png" alt="...">linkedIn</a>
-              </div> 
-             </div> 
-             <br/>
-             <br/>
-            <div class=row>
-              <div class="col-xs-12 col-sm-12 col-md-12">
-                <h5 id=quote> ${res.data.bio} where bio goes </h5>
-              </div>
+        <br>
+        <br>
+        <div id=overlay>
+            <div class="row">
+                <div class="col-4">
+                    <img id="bio-image" src="${res.data.avatar_url}" alt="..."> <!--  note favicon same?-->
+                </div>
+                <div class="col-8">
+                  <div>
+                    <br>
+                    <h3>Hello!</h3>
+                    <h4> My name is ${answers.name}. And here's a bit about me.</h4>
+                    <h5>I'm currently at ${res.data.company}.</h5>
+                    <div>
+                      <a href="https://www.google.com/maps/place/${res.data.location}" target="_blank"><img class="linkimg" src="https://cdn0.iconfinder.com/data/icons/small-n-flat/24/678111-map-marker-512.png" alt="..." />${res.data.location}</a>
+                    </div>
+                    <div>
+                        <a href="${res.data.html_url}" target="_blank"><img class="linkimg" src="https://image.flaticon.com/icons/svg/25/25231.svg" alt="..." />Github</a>
+                    </div>
+                    <div>
+                      <a href="https://${answers.linkedIn}" target="_blank"><img class="linkimg" src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" alt="..." />linkedIn</a>
+                    </div>
+                    <h5 id="quote"> Git Bio: ${res.data.bio} </h5>
+                  </div>
+                </div> 
             </div>
-          </div>
-        <div class="row card-deck">
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Followers</h5>
-              <h5 class="card-text">${res.data.followers}</p>
+            <div class="row card-deck">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3" style="margin-bottom: 20px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Followers</h5>
+                                <h5 class="card-text">${res.data.followers}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3" style="margin-bottom: 20px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Public Repos</h5>
+                                <h5 class="card-text">${res.data.public_repos}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Following</h5>
+                                <h5 class="card-text">${res.data.following}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">GitHub Stars</h5>
+                                <h5 class="card-text">${resStar.data[0].stargazers_count}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Public Repos</h5>
-              <h5 class="card-text">${res.data.public_repos}</p>
-            </div>
-          </div>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">Following</h5>
-              <h5 class="card-text">${res.data.following}</p>
-            </div>
-          </div>
-          </div>
-          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3	col-xl-3" style="margin-bottom: 20px;">
-          <div class="card">
-            <div class="card-body">
-              <h4 class="card-title">GitHub Stars</h5>
-              <h5 class="card-text">$ {res.follower}</p>
-            </div>
-          </div>
-          </div>
-       
-      </div>
+        </div>
     </section>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <div class=footer></div
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+    <div class=footer></div>
 </body>
+
 </html>`;
 }
 
