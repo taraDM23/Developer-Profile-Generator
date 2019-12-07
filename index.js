@@ -51,7 +51,7 @@ async function main() {
         "format": "A4",
         "orientation": "portrait",
         "type": "pdf",
-        "timeout": 3000,
+        "timeout": 100000,
       }
     ).toFile('./portfolio.pdf', function (err, res) {
       if (err) return console.log(err);
